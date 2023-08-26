@@ -24,11 +24,14 @@ ethernet:
   power_pin: GPIO12
 
 api:
+  encryption:
+    key: "xu+4kolIDtjuhBX5ACIwzyReQP3u8mIGVvKxrZ9yNXI="
+
 logger:
 ota:
 
 dashboard_import:
-  package_import_url: github://esphome/bluetooth-proxies/olimex-esp32-poe-iso.yaml@main
+  package_import_url: github://esphome/jcortenbach/bluetooth-proxies/olimex-esp32-poe-iso.yaml@main
 
 esp32_ble_tracker:
   scan_parameters:
@@ -43,3 +46,13 @@ button:
 - platform: safe_mode
   name: Safe Mode Boot
   entity_category: diagnostic
+
+ble_client:
+  - mac_address: 78:A5:04:3F:A0:28
+    id: anova_sous_vide
+    
+climate:
+  - platform: anova
+    name: "Anova Sous Vide"
+    ble_client_id: anova_sous_vide
+    unit_of_measurement: c
